@@ -53,7 +53,7 @@ export default class SymbolTicker extends React.Component {
 
     return (
       <div className="row">
-        <h4 className="col-12 text-center">24 Hour Stats</h4>
+        <h4 className="col-12 text-center border-bottom">24 Hour Stats</h4>
         {vm.ohclv.map(it => (
           <div className="col-6">
             <b>{it.label} :</b> {it.value}

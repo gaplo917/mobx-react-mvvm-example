@@ -1,11 +1,17 @@
 {
   "name": "mobx-react-price-feed-mvvm-example",
-  "version": "0.0.623",
-  "description": null,
-  "keywords": [],
-  "homepage": "https://codesandbox.io/s/v3v0my2370",
+  "version": "1.0.0",
+  "description": "Mobx MVVM price feed example ",
+  "keywords": [
+    "mobx",
+    "react",
+    "reactjs",
+    "mvvm"
+  ],
+  "homepage": "https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/master/",
   "main": "index.js",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "mobx": "5.9.0",
     "mobx-react": "5.4.3",
     "mobx-react-devtools": "6.0.3",
@@ -15,12 +21,22 @@
     "styled-components": "4.1.3"
   },
   "devDependencies": {
-    "react-scripts": "1.0.0"
+    "@babel/core": "7.1.2",
+    "@babel/node": "7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.4",
+    "html-webpack-plugin": "3.2.0",
+    "path": "0.12.7",
+    "react-hot-loader": "^4.7.0",
+    "webpack": "4.20.2",
+    "webpack-cli": "3.1.2",
+    "webpack-dev-server": ">=3.1.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "babel-node ./node_modules/webpack/bin/webpack",
+    "start": "webpack-dev-server --hot --config ./webpack.config.js --mode development"
   }
 }

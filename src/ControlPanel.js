@@ -48,7 +48,7 @@ export default class ControlPanel extends React.Component {
   render() {
     const { vm } = this;
     return (
-      <div>
+      <>
         <label>Depth:</label>
         <select value={vm.depth} onChange={vm.selectDepth}>
           {vm.depthOptions.map(d => (
@@ -62,11 +62,11 @@ export default class ControlPanel extends React.Component {
         <ul>
           {vm.subscribedTopics.map(it => (
             <li>
-              {it} (lastUpdateId: {vm.selectLastUpdateIdByTopic(it)})
+              {it} (event uid: {vm.selectLastUpdateIdByTopic(it)})
             </li>
           ))}
         </ul>
-      </div>
+      </>
     );
   }
 }
