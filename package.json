@@ -1,0 +1,26 @@
+{
+  "name": "mobx-react-price-feed-mvvm-example",
+  "version": "0.0.623",
+  "description": null,
+  "keywords": [],
+  "homepage": "https://codesandbox.io/s/v3v0my2370",
+  "main": "index.js",
+  "dependencies": {
+    "mobx": "5.9.0",
+    "mobx-react": "5.4.3",
+    "mobx-react-devtools": "6.0.3",
+    "mobx-utils": "5.1.0",
+    "react": "16.8.0",
+    "react-dom": "16.8.0",
+    "styled-components": "4.1.3"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
