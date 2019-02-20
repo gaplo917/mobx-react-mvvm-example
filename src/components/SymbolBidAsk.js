@@ -5,8 +5,6 @@ import { createDepthTopicFromSymbol } from "../helper";
 import styled from "styled-components";
 
 class SymbolBidAskVm {
-  symbol = null;
-
   constructor({ appState, webSocketState, symbol }) {
     this.appState = appState;
     this.webSocketState = webSocketState;
