@@ -53,10 +53,10 @@ export default class SymbolList extends React.Component {
   render() {
     const { vm } = this;
     return vm.favSymbols.map(symbol => (
-      <section className="mt-4 card p-4">
+      <section className="mt-4 card p-4" key={symbol}>
         <h1>{vm.titleForSymbol(symbol)}</h1>
-        <SymbolTicker symbol={symbol} key={symbol}/>
-        <SymbolBidAsk symbol={symbol} key={symbol}/>
+        <SymbolTicker symbol={symbol} />
+        <SymbolBidAsk symbol={symbol} />
       </section>
     ));
   }

@@ -61,7 +61,7 @@ export default class ControlPanel extends React.Component {
         <b>Subscribed Topics</b>
         <ul>
           {vm.subscribedTopics.map(it => (
-            <li>
+            <li key={it}>
               {it} (event uid: {vm.selectLastUpdateIdByTopic(it)})
             </li>
           ))}

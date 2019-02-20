@@ -22,8 +22,8 @@ export class WebSocketState {
     this._topics.forEach(topic => {
       this._streams.set(topic, {
         lastUpdateId: -1,
-        bids: [[]],
-        asks: [[]]
+        bids: [],
+        asks: []
       });
     });
 

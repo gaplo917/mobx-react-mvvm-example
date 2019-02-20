@@ -33,7 +33,6 @@ class SymbolTickerVm {
       { label: "Low", value: this.stream.l },
       { label: "Close", value: this.stream.c },
       { label: "Volume", value: this.stream.v },
-      { label: "Volume", value: this.stream.v },
       { label: "Best bid", value: this.stream.b },
       { label: "Best ask", value: this.stream.a },
       { label: "Total Trades", value: this.stream.n },
@@ -54,7 +53,7 @@ export default class SymbolTicker extends React.Component {
       <div className="row">
         <h4 className="col-12 text-center border-bottom">24 Hour Stats</h4>
         {vm.stats.map(it => (
-          <div className="col-6">
+          <div className="col-6" key={it.label}>
             <b>{it.label} :</b> {it.value}
           </div>
         ))}
