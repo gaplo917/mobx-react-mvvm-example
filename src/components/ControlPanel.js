@@ -1,56 +1,27 @@
 import React from "react";
-import { action, computed } from "mobx";
-import { createTransformer } from "mobx-utils";
-import { inject, observer } from "mobx-react";
+import { inject, observer, Observer } from "mobx-react";
+import ControlPanelVm from "./ControlPanelVm";
 
-class ControlPanelVm {
-  constructor({ appState, webSocketState }) {
-    this.appState = appState;
-    this.webSocketState = webSocketState;
-  }
-
-  get depthOptions() {
-    return [5, 10, 20];
-  }
-
-  @action.bound
-  selectDepth(event) {
-    this.appState.depth = event.target.value;
-  }
-
-  @computed
-  get depth() {
-    return this.appState.depth;
-  }
-
-  @computed
-  get subscribedUrl() {
-    return this.webSocketState.url;
-  }
-
-  @computed
-  get subscribedTopics() {
-    return this.webSocketState.topics;
-  }
-
-  // dynamic expression to select data from reactive source
-  selectLastUpdateIdByTopic(topic) {
-    const t = createTransformer(it => it.lastUpdateId || it.E);
-    return t(this.webSocketState.streams.get(topic));
-  }
-}
+// change to `false` and check the result with "React Dev Tools > Highlight Updates"
+const showOptimizedVersion = true;
 
 @inject("appState", "webSocketState")
 @observer
 export default class ControlPanel extends React.Component {
   vm = new ControlPanelVm(this.props);
 
+  componentWillUnmount() {
+    // dispose the reaction
+    this.vm.dispose();
+  }
+
   render() {
     const { vm } = this;
+
     return (
-      <>
+      <div className="mt-5">
         <label>Depth:</label>
-        <select value={vm.depth} onChange={vm.selectDepth}>
+        <select value={vm.depth} onChange={vm.onSelectDepth}>
           {vm.depthOptions.map(d => (
             <option key={d}>{d}</option>
           ))}
@@ -60,13 +31,16 @@ export default class ControlPanel extends React.Component {
         </p>
         <b>Subscribed Topics</b>
         <ul>
-          {vm.subscribedTopics.map(it => (
-            <li key={it}>
-              {it} (event uid: {vm.selectLastUpdateIdByTopic(it)})
-            </li>
-          ))}
+          {
+            // MobX Optimization show case, this can reduce parent re-render
+            showOptimizedVersion
+              ? vm.subscribedTopics.map(it => <Observer key={it}>{() => <li>{it} (event
+                uid: {vm.selectEventUidByTopic(it)})</li>}</Observer>)
+              : vm.subscribedTopics.map(it => <li key={it}>{it} (event uid: {vm.selectEventUidByTopic(it)})</li>)
+          }
         </ul>
-      </>
+
+      </div>
     );
   }
 }

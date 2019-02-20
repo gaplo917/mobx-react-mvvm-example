@@ -1,25 +1,28 @@
 import React from "react";
-import { observer, Provider } from "mobx-react";
+import { Provider } from "mobx-react";
 import { AppState, WebSocketState } from "../states";
 import ControlPanel from "./ControlPanel";
 import SymbolList from "./SymbolList";
 import DevTools from "mobx-react-devtools";
-import { hot } from "react-hot-loader/root"
+import { hot } from "react-hot-loader/root";
+import { ApiService } from "../services/ApiService";
 
 class App extends React.Component {
   render() {
     return (
-      <>
-        <Provider appState={new AppState()} webSocketState={new WebSocketState()}>
+      <div className="container">
+        <Provider
+          appState={new AppState({ apiService: new ApiService() })}
+          webSocketState={new WebSocketState()}>
           <>
             <ControlPanel/>
             <SymbolList/>
           </>
         </Provider>
         <DevTools/>
-      </>
-    )
+      </div>
+    );
   }
 }
 
-export default observer(hot(App))
+export default hot(App);
