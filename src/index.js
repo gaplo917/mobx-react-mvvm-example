@@ -1,6 +1,5 @@
 /**
- * MobX + React price feed example
- * original forked from https://codesandbox.io/s/v3v0my2370
+ * MobX + React price feed in MVVM example
  * https://blog.gaplotech.com
  * @author Gap撈Tech
  */
