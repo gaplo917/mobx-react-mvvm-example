@@ -1,12 +1,12 @@
 import React from "react";
-import { action, computed, observable } from "mobx";
+import { action, computed } from "mobx";
 import { createTransformer } from "mobx-utils";
-import { observer, inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 
 class ControlPanelVm {
-  constructor({ appState, webSocketData }) {
+  constructor({ appState, webSocketState }) {
     this.appState = appState;
-    this.webSocketData = webSocketData;
+    this.webSocketState = webSocketState;
   }
 
   get depthOptions() {
@@ -25,22 +25,22 @@ class ControlPanelVm {
 
   @computed
   get subscribedUrl() {
-    return this.webSocketData.url;
+    return this.webSocketState.url;
   }
 
   @computed
   get subscribedTopics() {
-    return this.webSocketData.topics;
+    return this.webSocketState.topics;
   }
 
   // dynamic expression to select data from reactive source
   selectLastUpdateIdByTopic(topic) {
     const t = createTransformer(it => it.lastUpdateId || it.E);
-    return t(this.webSocketData.streams.get(topic));
+    return t(this.webSocketState.streams.get(topic));
   }
 }
 
-@inject("appState", "webSocketData")
+@inject("appState", "webSocketState")
 @observer
 export default class ControlPanel extends React.Component {
   vm = new ControlPanelVm(this.props);

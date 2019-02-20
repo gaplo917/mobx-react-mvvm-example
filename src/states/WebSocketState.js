@@ -2,10 +2,10 @@ import { observable, computed, action, when } from "mobx";
 import {
   createDepthTopicFromSymbol,
   createTickerTopicFromSymbol
-} from "./helper";
+} from "../helper";
 
-export default class WebSocketData {
-  socket = null;
+export class WebSocketState {
+  _socket = null;
   @observable _topics = [];
   @observable _streams = new Map();
 
@@ -57,7 +57,7 @@ export default class WebSocketData {
 
     socket.onmessage = this._handleMessage.bind(this);
 
-    this.socket = socket;
+    this._socket = socket;
   }
 
   _handleMessage(event) {
@@ -66,7 +66,7 @@ export default class WebSocketData {
   }
 
   _disconnectIfNeeded() {
-    // close the socket and re-init
-    this.socket && this.socket.close();
+    // close the _socket and re-init
+    this._socket && this._socket.close();
   }
 }

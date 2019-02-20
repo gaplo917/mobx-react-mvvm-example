@@ -1,20 +1,16 @@
 import React from "react";
-import { observable, computed } from "mobx";
-import { observer, inject } from "mobx-react";
-import { createDepthTopicFromSymbol } from "./helper";
+import { computed } from "mobx";
+import { inject, observer } from "mobx-react";
+import { createDepthTopicFromSymbol } from "../helper";
 import styled from "styled-components";
 
 class SymbolBidAskVm {
   symbol = null;
 
-  constructor({ appState, webSocketData, symbol }) {
+  constructor({ appState, webSocketState, symbol }) {
     this.appState = appState;
-    this.webSocketData = webSocketData;
+    this.webSocketState = webSocketState;
     this.symbol = symbol;
-  }
-
-  get title() {
-    return this.symbol.toUpperCase();
   }
 
   @computed
@@ -24,7 +20,7 @@ class SymbolBidAskVm {
 
   @computed
   get stream() {
-    return this.webSocketData.streams.get(this.topic);
+    return this.webSocketState.streams.get(this.topic);
   }
 
   @computed
@@ -45,26 +41,26 @@ const Table = styled.table.attrs({
 const QuoteTable = ({ title, source }) => (
   <Table>
     <thead>
-      <tr>
-        <th colSpan={2}>{title}</th>
-      </tr>
+    <tr>
+      <th colSpan={2}>{title}</th>
+    </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Price</td>
-        <td>Qty</td>
+    <tr>
+      <td>Price</td>
+      <td>Qty</td>
+    </tr>
+    {source.map(([price, qty], index) => (
+      <tr key={index}>
+        <td>{price}</td>
+        <td>{qty}</td>
       </tr>
-      {source.map(([price, qty], index) => (
-        <tr key={index}>
-          <td>{price}</td>
-          <td>{qty}</td>
-        </tr>
-      ))}
+    ))}
     </tbody>
   </Table>
 );
 
-@inject("appState", "webSocketData")
+@inject("appState", "webSocketState")
 @observer
 export default class SymbolBidAsk extends React.Component {
   vm = new SymbolBidAskVm(this.props);
@@ -74,8 +70,8 @@ export default class SymbolBidAsk extends React.Component {
 
     return (
       <div className="row">
-        <QuoteTable title="Bids" source={vm.bids} />
-        <QuoteTable title="Asks" source={vm.asks} />
+        <QuoteTable title="Bids" source={vm.bids}/>
+        <QuoteTable title="Asks" source={vm.asks}/>
       </div>
     );
   }

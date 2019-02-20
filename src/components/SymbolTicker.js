@@ -1,12 +1,11 @@
 import React from "react";
-import { observable, computed } from "mobx";
-import { observer, inject } from "mobx-react";
-import { createTickerTopicFromSymbol } from "./helper";
-import styled from "styled-components";
+import { computed } from "mobx";
+import { inject, observer } from "mobx-react";
+import { createTickerTopicFromSymbol } from "../helper";
 
 class SymbolTickerVm {
-  constructor({ webSocketData, symbol }) {
-    this.webSocketData = webSocketData;
+  constructor({ webSocketState, symbol }) {
+    this.webSocketState = webSocketState;
     this.symbol = symbol;
   }
 
@@ -17,7 +16,7 @@ class SymbolTickerVm {
 
   @computed
   get stream() {
-    return this.webSocketData.streams.get(this.topic);
+    return this.webSocketState.streams.get(this.topic);
   }
 
   @computed
@@ -27,7 +26,7 @@ class SymbolTickerVm {
   }
 
   @computed
-  get ohclv() {
+  get stats() {
     return [
       { label: "Open", value: this.stream.o },
       { label: "High", value: this.stream.h },
@@ -43,7 +42,7 @@ class SymbolTickerVm {
   }
 }
 
-@inject("webSocketData")
+@inject("webSocketState")
 @observer
 export default class SymbolTicker extends React.Component {
   vm = new SymbolTickerVm(this.props);
@@ -54,7 +53,7 @@ export default class SymbolTicker extends React.Component {
     return (
       <div className="row">
         <h4 className="col-12 text-center border-bottom">24 Hour Stats</h4>
-        {vm.ohclv.map(it => (
+        {vm.stats.map(it => (
           <div className="col-6">
             <b>{it.label} :</b> {it.value}
           </div>

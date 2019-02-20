@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 
-export default class AppState {
+export class AppState {
   @observable depth = 10;
 
   async getFavSymbols() {

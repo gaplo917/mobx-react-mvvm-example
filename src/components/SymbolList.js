@@ -1,15 +1,15 @@
 import React from "react";
 import { action, computed, observable, reaction } from "mobx";
-import { observer, inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import SymbolBidAsk from "./SymbolBidAsk";
 import SymbolTicker from "./SymbolTicker";
 
 class SymbolListVm {
   @observable favSymbols = [];
 
-  constructor({ appState, webSocketData }) {
+  constructor({ appState, webSocketState }) {
     this.appState = appState;
-    this.webSocketData = webSocketData;
+    this.webSocketState = webSocketState;
 
     this.reaction = reaction(
       () => this.depth,
@@ -22,7 +22,7 @@ class SymbolListVm {
   async subscribeFavSymbols() {
     const favSymbols = await this.appState.getFavSymbols();
     const depth = this.depth;
-    this.webSocketData.subscribeSymbols(favSymbols, depth);
+    this.webSocketState.subscribeSymbols(favSymbols, depth);
 
     this.favSymbols = favSymbols;
   }
@@ -41,7 +41,7 @@ class SymbolListVm {
   }
 }
 
-@inject("appState", "webSocketData")
+@inject("appState", "webSocketState")
 @observer
 export default class SymbolList extends React.Component {
   vm = new SymbolListVm(this.props);
@@ -55,8 +55,8 @@ export default class SymbolList extends React.Component {
     return vm.favSymbols.map(symbol => (
       <section className="mt-4 card p-4">
         <h1>{vm.titleForSymbol(symbol)}</h1>
-        <SymbolTicker symbol={symbol} key={symbol} />
-        <SymbolBidAsk symbol={symbol} key={symbol} />
+        <SymbolTicker symbol={symbol} key={symbol}/>
+        <SymbolBidAsk symbol={symbol} key={symbol}/>
       </section>
     ));
   }
