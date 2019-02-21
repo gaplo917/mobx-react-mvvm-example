@@ -23,8 +23,8 @@ export default class SymbolBidAskVm {
   }
 
   @computed
-  get stream() {
-    return this.webSocketState.streams.get(this.topic);
+  get stream(): MarketData.OrderBookDepth | undefined {
+    return this.webSocketState.streams.get(this.topic) as MarketData.OrderBookDepth;
   }
 
   @computed

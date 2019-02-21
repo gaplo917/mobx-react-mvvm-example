@@ -8,7 +8,8 @@
     "esModuleInterop": true,
     "jsx": "react",
     "experimentalDecorators": true,
-    "types" : ["react", "react-dom", "styled-components"]
+    "types" : ["react", "react-dom", "styled-components"],
+    "strictNullChecks": true
   },
   "include": [
     "./src/**/*"

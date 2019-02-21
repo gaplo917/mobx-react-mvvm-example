@@ -42,7 +42,8 @@ export default class ControlPanel extends React.Component<ControlPanelProps, {}>
             showOptimizedVersion
               ? vm.subscribedTopics.map(it => <Observer key={it}>{() => <li>{it} (event
                 uid: {vm.selectEventUidByTopic(it)})</li>}</Observer>)
-              : vm.subscribedTopics.map(it => <li key={it}>{it} (event uid: {vm.selectEventUidByTopic(it)})</li>)
+              : vm.subscribedTopics.map(it => <li key={it}>{it} (event
+                uid: {vm.selectEventUidByTopic(it)})</li>)
           }
         </ul>
 

@@ -1,15 +1,10 @@
 import { action, computed, observable } from "mobx";
 import { createDepthTopicFromSymbol, createTickerTopicFromSymbol } from "../helper";
 
-export type BinanceMessage = {
-  stream: string,
-  data: any
-}
-
 export class WebSocketState {
   private _socket: WebSocket | null = null;
   @observable private _topics: string[] = [];
-  @observable private _streams: Map<string, any> = new Map();
+  @observable private _streams: Map<string, MarketData.Message | undefined> = new Map();
 
   @action.bound
   subscribeSymbols(symbols: string[], depth: number) {
@@ -53,8 +48,8 @@ export class WebSocketState {
     this._socket = socket;
   }
 
-  private handleMessage(event: BinanceMessage) {
-    const { stream, data } = JSON.parse(event.data);
+  private handleMessage(msg: MarketData.RawMessage) {
+    const { stream, data } = JSON.parse(msg.data);
     this._streams.set(stream, data);
   }
 
