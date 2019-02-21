@@ -19,11 +19,14 @@ other language to reduce boilerplate drastically. Typescript compiler can really
 strongest reason to choose typescript over plain javascript)*
 
 # Run/Edit in CodeSandbox
-[![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/master/)
 
+| Language | CodeSandbox |
+| --- | --- |
+| Javascript | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/master/) |
+| Typescript | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/typescript/) |
 
 # Run in local
 ```
-npm install
-npm start
+yarn install
+yarn start
 ```
