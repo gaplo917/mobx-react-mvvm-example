@@ -1,10 +1,14 @@
 import { computed } from "mobx";
 import { createTickerTopicFromSymbol } from "../helper";
+import { WebSocketState } from "../states";
+import { SymbolTickerProps } from "./SymbolTicker";
 
 export default class SymbolTickerVm {
-  constructor({ webSocketState, symbol }) {
-    this.webSocketState = webSocketState;
-    this.symbol = symbol;
+  private webSocketState: WebSocketState;
+  public readonly symbol: string;
+
+  constructor(init: SymbolTickerProps) {
+    Object.assign(this, init);
   }
 
   @computed

@@ -1,10 +1,12 @@
 import { computed } from "mobx";
+import { SymbolListProps } from "./SymbolList";
+import { AppState } from "../states";
 
 export default class SymbolListVm {
+  private appState: AppState;
 
-  constructor({ appState, webSocketState }) {
-    this.appState = appState;
-    this.webSocketState = webSocketState;
+  constructor(init: SymbolListProps) {
+    Object.assign(this, init);
   }
 
   @computed
@@ -17,7 +19,7 @@ export default class SymbolListVm {
     return this.appState.favSymbols;
   }
 
-  titleForSymbol(symbol) {
+  titleForSymbol(symbol: string) {
     return symbol.toUpperCase();
   }
 

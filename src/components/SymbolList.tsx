@@ -3,11 +3,16 @@ import { inject, observer } from "mobx-react";
 import SymbolBidAsk from "./SymbolBidAsk";
 import SymbolTicker from "./SymbolTicker";
 import SymbolListVm from "./SymbolListVm";
+import { AppState } from "../states";
 
-@inject("appState", "webSocketState")
+export type SymbolListProps = {
+  appState?: AppState
+}
+
+@inject("appState")
 @observer
-export default class SymbolList extends React.Component {
-  vm = new SymbolListVm(this.props);
+export default class SymbolList extends React.Component<SymbolListProps> {
+  private vm = new SymbolListVm(this.props);
 
   render() {
     const { vm } = this;

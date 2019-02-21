@@ -1,7 +1,8 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import styled from "styled-components";
-import SymbolBidAskVm from "./SymbolBidAskVm";
+import SymbolBidAskVm, { Quote } from "./SymbolBidAskVm";
+import { AppState, WebSocketState } from "../states";
 
 const Table = styled.table.attrs({
   className: "table table-sm table-bordered text-center"
@@ -19,12 +20,12 @@ const Table = styled.table.attrs({
   }
 `;
 
-const QuoteTable = observer(({ title, source }) => (
+const QuoteTable = observer((props: { title: string, source: Array<Quote[]> }) => (
   <div className="table-responsive col-6">
     <Table>
       <thead>
       <tr>
-        <th colSpan={2}>{title}</th>
+        <th colSpan={2}>{props.title}</th>
       </tr>
       </thead>
       <tbody>
@@ -32,7 +33,7 @@ const QuoteTable = observer(({ title, source }) => (
         <td>Price</td>
         <td>Qty</td>
       </tr>
-      {source.map(([price, qty], index) => (
+      {props.source.map(([price, qty], index) => (
         <tr key={index}>
           <td>{price}</td>
           <td>{qty}</td>
@@ -43,10 +44,16 @@ const QuoteTable = observer(({ title, source }) => (
   </div>
 ));
 
+export type SymbolBidAskProps = {
+  appState?: AppState
+  webSocketState?: WebSocketState
+  symbol: string
+}
+
 @inject("appState", "webSocketState")
 @observer
-export default class SymbolBidAsk extends React.Component {
-  vm = new SymbolBidAskVm(this.props);
+export default class SymbolBidAsk extends React.Component<SymbolBidAskProps, {}> {
+  private vm = new SymbolBidAskVm(this.props);
 
   render() {
     const { vm } = this;

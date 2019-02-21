@@ -1,11 +1,20 @@
 import { computed } from "mobx";
 import { createDepthTopicFromSymbol } from "../helper";
+import { AppState, WebSocketState } from "../states";
+import { SymbolBidAskProps } from "./SymbolBidAsk";
+
+export type Quote = {
+  price: string
+  qty: string
+}
 
 export default class SymbolBidAskVm {
-  constructor({ appState, webSocketState, symbol }) {
-    this.appState = appState;
-    this.webSocketState = webSocketState;
-    this.symbol = symbol;
+  private appState: AppState;
+  private webSocketState: WebSocketState;
+  private symbol: string;
+
+  constructor(init: SymbolBidAskProps) {
+    Object.assign(this, init);
   }
 
   @computed
@@ -19,12 +28,12 @@ export default class SymbolBidAskVm {
   }
 
   @computed
-  get bids() {
+  get bids(): Array<Quote[]> {
     return this.stream ? this.stream.bids : [];
   }
 
   @computed
-  get asks() {
+  get asks(): Array<Quote[]> {
     return this.stream ? this.stream.asks : [];
   }
 }

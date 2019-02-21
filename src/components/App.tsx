@@ -7,7 +7,7 @@ import DevTools from "mobx-react-devtools";
 import { hot } from "react-hot-loader/root";
 import { ApiService } from "../services/ApiService";
 
-class App extends React.Component {
+class App extends React.Component<any, {}> {
   render() {
     return (
       <div className="container">

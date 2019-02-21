@@ -1,10 +1,16 @@
-import { action, computed, reaction } from "mobx";
+import { action, computed, IReactionDisposer, reaction } from "mobx";
 import { createTransformer } from "mobx-utils";
+import { AppState, WebSocketState } from "../states";
+import { ChangeEvent } from "react";
+import { ControlPanelProps } from "./ControlPanel";
 
 export default class ControlPanelVm {
-  constructor({ appState, webSocketState }) {
-    this.appState = appState;
-    this.webSocketState = webSocketState;
+  private appState: AppState;
+  private webSocketState: WebSocketState;
+  private readonly reaction: IReactionDisposer | undefined;
+
+  constructor(init: ControlPanelProps) {
+    Object.assign(this, init);
 
     // show case of reaction
     this.reaction = reaction(
@@ -26,8 +32,8 @@ export default class ControlPanelVm {
   }
 
   @action.bound
-  onSelectDepth(event) {
-    this.appState.depth = event.target.value;
+  onSelectDepth(event: ChangeEvent<HTMLSelectElement>): void {
+    this.appState.depth = parseInt(event.target.value);
   }
 
   @computed
@@ -46,9 +52,9 @@ export default class ControlPanelVm {
   }
 
   // dynamic expression to select data from reactive source
-  selectEventUidByTopic(topic) {
-    const t = createTransformer(it => it.lastUpdateId || it.E);
-    return t(this.webSocketState.streams.get(topic));
+  selectEventUidByTopic(topic: string): any {
+    const t = createTransformer<any, string>(it => it.lastUpdateId || it.E);
+    return t(this.webSocketState.streams.get(topic) || {});
   }
 
   dispose() {

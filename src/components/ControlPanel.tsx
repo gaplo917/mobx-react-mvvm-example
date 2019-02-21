@@ -1,14 +1,20 @@
 import React from "react";
 import { inject, observer, Observer } from "mobx-react";
 import ControlPanelVm from "./ControlPanelVm";
+import { AppState, WebSocketState } from "../states";
+
+export type ControlPanelProps = {
+  appState?: AppState
+  webSocketState?: WebSocketState
+}
 
 // change to `false` and check the result with "React Dev Tools > Highlight Updates"
 const showOptimizedVersion = true;
 
 @inject("appState", "webSocketState")
 @observer
-export default class ControlPanel extends React.Component {
-  vm = new ControlPanelVm(this.props);
+export default class ControlPanel extends React.Component<ControlPanelProps, {}> {
+  private vm = new ControlPanelVm(this.props);
 
   componentWillUnmount() {
     // dispose the reaction

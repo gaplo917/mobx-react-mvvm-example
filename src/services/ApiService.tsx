@@ -2,8 +2,8 @@
  * This class should be stateless and portable
  */
 export class ApiService {
-  async getFavSymbols() {
-    const fakeFavSymbolsApiCall = () =>
+  public async getFavSymbols(): Promise<string[]> {
+    const fakeFavSymbolsApiCall: () => Promise<string[]> = () =>
       new Promise(resolve => {
         // assume there are few fav symbols
         // for demo purpose no need to add extra axios library to call api & CORS problem

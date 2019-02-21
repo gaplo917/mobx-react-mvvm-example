@@ -11,6 +11,8 @@
   "homepage": "https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/master/",
   "main": "index.js",
   "dependencies": {
+    "@types/react": "^16.8.4",
+    "@types/react-dom": "^16.8.2",
     "babel-polyfill": "^6.26.0",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
@@ -28,10 +30,14 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@hot-loader/react-dom": "^16.8.2",
+    "@types/styled-components": "^4.1.10",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
     "html-webpack-plugin": "^3.2.0",
     "path": "^0.12.7",
     "react-hot-loader": "^4.7.0",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.3.3",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"

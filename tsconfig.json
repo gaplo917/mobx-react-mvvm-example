@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "types" : ["react", "react-dom", "styled-components"]
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}

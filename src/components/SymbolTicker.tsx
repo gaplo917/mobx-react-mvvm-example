@@ -1,11 +1,17 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import SymbolTickerVm from "./SymbolTickerVm";
+import { WebSocketState } from "../states";
+
+export type SymbolTickerProps = {
+  webSocketState?: WebSocketState
+  symbol: string
+}
 
 @inject("webSocketState")
 @observer
-export default class SymbolTicker extends React.Component {
-  vm = new SymbolTickerVm(this.props);
+export default class SymbolTicker extends React.Component<SymbolTickerProps, {}> {
+  private vm = new SymbolTickerVm(this.props);
 
   render() {
     const { vm } = this;
