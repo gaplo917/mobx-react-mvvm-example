@@ -34,8 +34,9 @@ export default class ControlPanel extends React.Component {
           {
             // MobX Optimization show case, this can reduce parent re-render
             showOptimizedVersion
-              ? vm.subscribedTopics.map(it => <Observer key={it}>{() => <li>{it} (event
-                uid: {vm.selectEventUidByTopic(it)})</li>}</Observer>)
+              ? vm.subscribedTopics.map(it => <Observer key={it}>
+                {() => <li>{it} (event uid: {vm.selectEventUidByTopic(it)})</li>}
+              </Observer>)
               : vm.subscribedTopics.map(it => <li key={it}>{it} (event uid: {vm.selectEventUidByTopic(it)})</li>)
           }
         </ul>
