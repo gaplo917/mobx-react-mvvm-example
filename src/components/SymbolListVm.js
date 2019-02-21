@@ -17,6 +17,6 @@ export default class SymbolListVm {
   }
 
   titleForSymbol(symbol) {
-    return symbol.toUpperCase()
+    return symbol?.toUpperCase();
   }
 }

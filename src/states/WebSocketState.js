@@ -25,12 +25,7 @@ export class WebSocketState {
 
     this._topics = [...depthTopics, ...tickerTopics]
 
-    // create empty observable
-    this._topics.forEach((topic) => {
-      this._streams.set(topic, {})
-    })
-
-    this._connectToBinance()
+    this._connectToBinance();
   }
 
   @computed

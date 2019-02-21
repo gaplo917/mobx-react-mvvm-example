@@ -45,10 +45,13 @@ export default class ControlPanelVm {
     return this.webSocketState.topics
   }
 
-  // dynamic expression to select data from reactive source
+  // show case of dynamic expression to select data from reactive source
   selectEventUidByTopic(topic) {
-    const t = createTransformer(it => it.lastUpdateId || it.E)
-    return t(this.webSocketState.streams.get(topic) || {})
+    // https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md
+    // depth: lastUpdateId, ticker: E
+    const stream = this.webSocketState.streams.get(topic);
+    const t = createTransformer(it => it.lastUpdateId || it.E);
+    return stream ? t(stream) : undefined;
   }
 
   dispose() {
