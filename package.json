@@ -49,7 +49,7 @@
   "scripts": {
     "build": "babel-node ./node_modules/webpack/bin/webpack --mode production",
     "start": "webpack-dev-server --hot --config ./webpack.config.js --mode development",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "jest": {
     "setupFilesAfterEnv": ["./src/__tests__/setupTests.js"],
