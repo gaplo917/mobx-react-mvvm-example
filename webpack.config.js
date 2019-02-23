@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const fs = require('fs');
 
@@ -29,7 +28,7 @@ module.exports = {
     },
     output: {
         path: __dirname + '/dist',
-        publicPath: '/',
+        publicPath: './',
         filename: 'bundle.js'
     },
     plugins: [
