@@ -43,7 +43,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "build": "babel-node ./node_modules/webpack/bin/webpack",
+    "build": "babel-node ./node_modules/webpack/bin/webpack --mode production",
     "start": "webpack-dev-server --hot --config ./webpack.config.js --mode development"
   }
 }
