@@ -5,13 +5,14 @@
     "class-methods-use-this": "off",
     "no-underscore-dangle": "off",
     "no-undef": "off",
+    "max-len": "off",
     "import/prefer-default-export": "off",
     "react/jsx-wrap-multilines": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-tag-spacing": "off",
     "jsx-a11y/label-has-for": "off",
-    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   },
   "parser": "babel-eslint",
   "parserOptions": {

@@ -30,7 +30,11 @@
     "@babel/preset-react": "^7.0.0",
     "@hot-loader/react-dom": "^16.8.2",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
+    "chai": "^4.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -44,6 +48,11 @@
   },
   "scripts": {
     "build": "babel-node ./node_modules/webpack/bin/webpack --mode production",
-    "start": "webpack-dev-server --hot --config ./webpack.config.js --mode development"
+    "start": "webpack-dev-server --hot --config ./webpack.config.js --mode development",
+    "test": "jest"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["./src/__tests__/setupTests.js"],
+    "testPathIgnorePatterns": ["./src/__tests__/setupTests.js"]
   }
 }
