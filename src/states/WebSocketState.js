@@ -2,13 +2,21 @@ import { action, computed, observable } from 'mobx'
 import { createDepthTopicFromSymbol, createTickerTopicFromSymbol } from '../helper'
 
 export class WebSocketState {
+  _host = null
+
+  _port = null
+
   _socket = null
 
   @observable _topics = []
 
   @observable _streams = new Map()
 
-  @action.bound
+  constructor(host = 'stream.binance.com', port = 9443) {
+    this._host = host
+    this._port = port
+  }
+
   subscribeSymbols(symbols, depth) {
     this._disconnectIfNeeded()
 
@@ -19,11 +27,7 @@ export class WebSocketState {
 
     // create empty observable
     this._topics.forEach((topic) => {
-      this._streams.set(topic, {
-        lastUpdateId: -1,
-        bids: [],
-        asks: [],
-      })
+      this._streams.set(topic, {})
     })
 
     this._connectToBinance()
@@ -48,7 +52,7 @@ export class WebSocketState {
   get url() {
     // Binance Websocket Documentation
     // https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md
-    return `wss://stream.binance.com:9443/stream?streams=${this.topicStr}`
+    return `wss://${this._host}:${this._port}/stream?streams=${this.topicStr}`
   }
 
   _connectToBinance() {

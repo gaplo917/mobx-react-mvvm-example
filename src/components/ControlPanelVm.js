@@ -6,7 +6,8 @@ export default class ControlPanelVm {
     this.appState = appState
     this.webSocketState = webSocketState
 
-    // show case of reaction
+    // just a show case of reaction (it is totally unnecessary)
+    // alternative: you can put onDepthChange() inside onSelectDepth(event) to replace this reaction
     this.reaction = reaction(
       () => this.depth,
       () => this.onDepthChange(),
@@ -47,7 +48,7 @@ export default class ControlPanelVm {
   // dynamic expression to select data from reactive source
   selectEventUidByTopic(topic) {
     const t = createTransformer(it => it.lastUpdateId || it.E)
-    return t(this.webSocketState.streams.get(topic))
+    return t(this.webSocketState.streams.get(topic) || {})
   }
 
   dispose() {

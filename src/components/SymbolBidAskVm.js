@@ -20,11 +20,11 @@ export default class SymbolBidAskVm {
 
   @computed
   get bids() {
-    return this.stream ? this.stream.bids : []
+    return this.stream && this.stream.bids ? this.stream.bids : []
   }
 
   @computed
   get asks() {
-    return this.stream ? this.stream.asks : []
+    return this.stream && this.stream.asks ? this.stream.asks : []
   }
 }
