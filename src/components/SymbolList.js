@@ -1,16 +1,16 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import SymbolBidAsk from "./SymbolBidAsk";
-import SymbolTicker from "./SymbolTicker";
-import SymbolListVm from "./SymbolListVm";
+import React from 'react'
+import { inject, observer } from 'mobx-react'
+import SymbolBidAsk from './SymbolBidAsk'
+import SymbolTicker from './SymbolTicker'
+import SymbolListVm from './SymbolListVm'
 
-@inject("appState", "webSocketState")
+@inject('appState', 'webSocketState')
 @observer
 export default class SymbolList extends React.Component {
-  vm = new SymbolListVm(this.props);
+  vm = new SymbolListVm(this.props)
 
   render() {
-    const { vm } = this;
+    const { vm } = this
     return vm.favSymbols.map(symbol => (
       <section key={symbol}>
         <div className="border-top my-5"/>
@@ -18,6 +18,6 @@ export default class SymbolList extends React.Component {
         <SymbolTicker symbol={symbol}/>
         <SymbolBidAsk symbol={symbol}/>
       </section>
-    ));
+    ))
   }
 }
