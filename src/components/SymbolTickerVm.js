@@ -20,22 +20,22 @@ export default class SymbolTickerVm {
   @computed
   get priceChangePercentage() {
     const v = this.stream?.P;
-    if (v === undefined) return "";
+    if (v === undefined) return '';
     return v > 0 ? `+${v}%` : `${v}%`;
   }
 
   @computed
   get stats() {
     return [
-      { label: "Open", value: this.stream?.o },
-      { label: "High", value: this.stream?.h },
-      { label: "Low", value: this.stream?.l },
-      { label: "Close", value: this.stream?.c },
-      { label: "Volume", value: this.stream?.v },
-      { label: "Best bid", value: this.stream?.b },
-      { label: "Best ask", value: this.stream?.a },
-      { label: "Total Trades", value: this.stream?.n },
-      { label: "Price Change over 24hr", value: this.priceChangePercentage }
+      { label: 'Open', value: this.stream?.o },
+      { label: 'High', value: this.stream?.h },
+      { label: 'Low', value: this.stream?.l },
+      { label: 'Close', value: this.stream?.c },
+      { label: 'Volume', value: this.stream?.v },
+      { label: 'Best bid', value: this.stream?.b },
+      { label: 'Best ask', value: this.stream?.a },
+      { label: 'Total Trades', value: this.stream?.n },
+      { label: 'Price Change over 24hr', value: this.priceChangePercentage },
     ];
   }
 }

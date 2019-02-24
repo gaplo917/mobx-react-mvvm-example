@@ -1,8 +1,8 @@
 import React from 'react'
 import { mount, shallow } from 'enzyme'
+import { Observer } from 'mobx-react'
 import ControlPanelVm from '../components/ControlPanelVm'
 import ControlPanel from '../components/ControlPanel'
-import { Observer } from 'mobx-react'
 
 jest.mock('../components/ControlPanelVm')
 
@@ -47,6 +47,5 @@ describe('<ControlPanel />', () => {
     expect(wrapper.find('option').containsAllMatchingElements(depthOptions)).toBe(true)
     expect(wrapper.find('li').length).toBe(1)
     expect(wrapper.find('li').text()).toBe('abcxyz@ticker(event uid:foo)')
-
   })
 })

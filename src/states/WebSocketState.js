@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx'
+import { computed, observable } from 'mobx'
 import { createDepthTopicFromSymbol, createTickerTopicFromSymbol } from '../helper'
 
 export class WebSocketState {
