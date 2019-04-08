@@ -1,7 +1,8 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react-lite'
 import styled from 'styled-components'
 import SymbolBidAskVm from './SymbolBidAskVm'
+import { useVm, useAppCtx } from '../hooks'
 
 const Table = styled.table.attrs({
   className: 'table table-sm table-bordered text-center',
@@ -43,20 +44,14 @@ const QuoteTable = observer(({ title, source }) => (
   </div>
 ))
 
-@inject('appState', 'webSocketState')
-@observer
-export default class SymbolBidAsk extends React.Component {
-  vm = new SymbolBidAskVm(this.props)
+export const SymbolBidAsk = observer(props => {
+  const vm = useVm(SymbolBidAskVm, [useAppCtx(), props])
 
-  render() {
-    const { vm } = this
-
-    return (
-      <div className="row mt-3">
-        <b className="col-12 text-center"><u>Real time OrderBook Depth</u></b>
-        <QuoteTable title="Bids" source={vm.bids}/>
-        <QuoteTable title="Asks" source={vm.asks}/>
-      </div>
-    )
-  }
-}
+  return (
+    <div className="row mt-3">
+      <b className="col-12 text-center"><u>Real time OrderBook Depth</u></b>
+      <QuoteTable title="Bids" source={vm.bids}/>
+      <QuoteTable title="Asks" source={vm.asks}/>
+    </div>
+  )
+})

@@ -12,9 +12,11 @@
   "main": "index.js",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "lodash": "^4.17.11",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "mobx-react-devtools": "^6.0.3",
+    "mobx-react-lite": "^1.2.0",
     "mobx-utils": "^5.1.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
@@ -34,13 +36,14 @@
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme-adapter-react-16": "^1.12.1",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.7.1",
     "path": "^0.12.7",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
@@ -52,7 +55,11 @@
     "test": "jest --coverage"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./src/__tests__/setupTests.js"],
-    "testPathIgnorePatterns": ["./src/__tests__/setupTests.js"]
+    "setupFilesAfterEnv": [
+      "./src/__tests__/setupTests.js"
+    ],
+    "testPathIgnorePatterns": [
+      "./src/__tests__/setupTests.js"
+    ]
   }
 }

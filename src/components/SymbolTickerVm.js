@@ -2,9 +2,10 @@ import { computed } from 'mobx'
 import { createTickerTopicFromSymbol } from '../helper'
 
 export default class SymbolTickerVm {
-  constructor({ webSocketState, symbol }) {
+  constructor([{ webSocketState }, { symbol }]) {
     this.webSocketState = webSocketState
     this.symbol = symbol
+    console.log("construct SymbolTickerVm")
   }
 
   @computed

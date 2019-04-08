@@ -2,7 +2,7 @@ import { computed } from 'mobx'
 import { createDepthTopicFromSymbol } from '../helper'
 
 export default class SymbolBidAskVm {
-  constructor({ appState, webSocketState, symbol }) {
+  constructor([{ appState, webSocketState}, { symbol }]) {
     this.appState = appState
     this.webSocketState = webSocketState
     this.symbol = symbol

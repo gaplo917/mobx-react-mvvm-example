@@ -2,7 +2,7 @@ import { autorun } from 'mobx'
 import ControlPanelVm from '../components/ControlPanelVm'
 
 import { AppState, WebSocketState } from '../states'
-import { ApiService } from '../services/ApiService'
+import { ApiService } from '../services'
 
 jest.mock('../services/ApiService')
 
@@ -29,6 +29,8 @@ describe('ControlPanelVm', () => {
     const { depth } = vm
     const newDepth = 5
     const event = { target: { value: newDepth } }
+
+    vm.registerDepthReaction()
 
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -101,6 +103,8 @@ describe('ControlPanelVm', () => {
     const newDepth = 5
     const event = { target: { value: newDepth } }
 
+    const reaction = vm.registerDepthReaction()
+
     const verify = () => {
       expect(mockGetFavSymbols).toBeCalled()
       expect(mockGetFavSymbols.mock.calls.length).toBe(1) // fireImmediately
@@ -113,7 +117,7 @@ describe('ControlPanelVm', () => {
       setTimeout(() => {
         verify()
 
-        vm.dispose()
+        reaction()
 
         vm.onSelectDepth(event)
         expect(vm.depth).toBe(newDepth)
