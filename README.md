@@ -24,9 +24,10 @@ Live On GitHub Page: https://gaplo917.github.io/mobx-react-mvvm-example
 
 | Language | CodeSandbox |
 | --- | --- |
-| Javascript | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/master/) |
-| Javascript + [Optional Chaining](https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining) | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/javascript/optional-chaining/) |
-| Typescript | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/typescript/) |
+| Javascript + React Hooks | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/master/) |
+| Javascript + Standard Class Component | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/javascript/mobx-react) |
+| Javascript + Standard Class Component + [Optional Chaining](https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining) | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/javascript/optional-chaining/) |
+| Typescript + Standard Class Component | [![Edit mobx-react-price-feed-mvvm-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/mobx-react-mvvm-example/tree/typescript/) |
 
 
 
